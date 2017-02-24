@@ -17,7 +17,7 @@ class SecCrawler():
 
     def make_directory(self, company_code, cik, priorto, filing_type):
         # Making the directory to save comapny filings
-        path = os.path.join(DEFAULT_DATA_PATH, company_code, cik, filing_type)
+        path = os.path.join(DEFAULT_DATA_PATH, company_code)
 
         if not os.path.exists(path):
             try:
@@ -33,8 +33,7 @@ class SecCrawler():
             base_url = doc_list[j]
             r = requests.get(base_url)
             data = r.text
-            path = os.path.join(DEFAULT_DATA_PATH, company_code, cik,
-                filing_type, doc_name_list[j])
+            path = os.path.join(DEFAULT_DATA_PATH, company_code, doc_name_list[j])
 
             with open(path, "a+") as f:
                 f.write(data.encode('ascii', 'ignore'))
